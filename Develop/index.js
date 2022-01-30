@@ -9,7 +9,7 @@ const generateMarkdown = require('./utils/generateMarkdown');
 const questions = [{
     type: "input",
     message: "What is the name of your application?",
-    name: "Project-Title"
+    name: "Title"
 }, 
 {
     type: "input",
@@ -19,32 +19,32 @@ const questions = [{
 {
     type: "input",
     message: "Table of Contents",
-    name: "Table-of-Contents"
+    name: "Contents"
 }, 
 {
     type: "input",
     message: "What steps are required to install and/or run this application? Be sure to adcise if there are any required dependencies.",
-    name: "Installation-Instructions"
+    name: "Installation"
 }, 
 {
     type: "input",
-    message: "Please provide detailed instructions on how to use this application. Feel free to share screnshots to aid in understanding.",
-    name: "Usage-Information"
+    message: "Please provide detailed instructions on how to use this application.",
+    name: "Usage"
 }, 
 {
     type: "input",
-    message: "Choose a license to tell others what they can and can't do with your application.",
+    message: "What license does your application use?",
     name: "License"
 }, 
 {
     type: "input",
-    message: "",
-    name: "Contributing-Guidelines"
+    message: "Who is contributing to this application.",
+    name: "Contributing"
 }, 
 {
     type: "input",
-    message: "",
-    name: "Test-Instructions"
+    message: "Please provide instructions for testing your code.",
+    name: "Tests"
 }, 
 {
     type: "input",
@@ -54,7 +54,7 @@ const questions = [{
 {
     type: "input",
     message: "What is your GitHub username?",
-    name: "GitHub"
+    name: "Github"
 }, 
 {
     type: "input",
@@ -64,15 +64,15 @@ const questions = [{
 ]
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {
-    fs.writeToFile(fileName, data, function(error){
+function writeFile(fileName, data) {
+    fs.writeFile(fileName, data, function(err){
         console.log(fileName)
         console.log(data)
-        if (error) {
+        if (err) {
             return console.log (error)
         }
         else { 
-            console.log("success")
+            console.log("README is complete")
         }
     })
 }
