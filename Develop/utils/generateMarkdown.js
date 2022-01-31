@@ -40,15 +40,19 @@ function generateMarkdown(data) {
 }
 
 function generateMarkdown(data) {
-              return `# ${data.Tests}`
-              }
+  return `# ${data.Tests}`
+}
+
 function generateMarkdown(data) {
-                return `# ${data.Questions}`
-                }
+  return `# ${data.Questions}`
+}
+
 function generateMarkdown(data) {
-                  return `# ${data.Github}`
-                  }
+  return `# ${data.Github}`
+}
+
 function generateMarkdown(data) {
-                    return `# ${data.Email}`
-                    }
+  return `# ${data.Email}`
+}
+
 module.exports = generateMarkdown;
