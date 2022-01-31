@@ -77,12 +77,12 @@ const promptUser = () => {
     type: "checkbox",
     name: "License",
     message: "Which license does your application use? Check the one that applies.",
-    choices: ['Unlicensed', 'Apache 2.0', 'Boost', 'BSD', 'Creative-Commons', 'Eclipse', 'GNU', 'The-Organization-For-Ethical-Source', 'IBM', 'ISC', 'MIT', 'Mozilla', 'Perl', 'Other'],
+    choices: ['Unlicensed', 'Apache 2.0','MIT', 'GPL 3.0'],
     validate: licenseInput => {
         if (licenseInput) {
             return true;
           } else {
-            console.log('Please enter information regarding licensing.');
+            console.log('Please click the checkbox for the license your peoject uses.');
             return false;
           }
         }
