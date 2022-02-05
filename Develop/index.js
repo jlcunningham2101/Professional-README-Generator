@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generatorMarkdown = require('./utils/generateMarkdown');
+const generateMarkdown = require('./utils/generateMarkdown');
 
 
 // TODO: Create an array of questions for user input
@@ -19,8 +19,7 @@ const promptUser = () => {
         return false;
       }
     }
-  },
-{
+  },{
     type: "input",
     name: "Description",
     message: "What does your application do? What technologies did you utilize and why? Did you encounter any challenges? Are there features you would like to implement in the future?",
@@ -32,9 +31,7 @@ const promptUser = () => {
             return false;
           }
         }
-      },
-
-{
+      },{
     type: "input",
     name: "Installation",
     message: "What steps are required to install and/or run this application? Be sure to advise if there are any required dependencies.",
@@ -46,8 +43,7 @@ const promptUser = () => {
             return false;
           }
         }
-      },
-{
+      },{
     type: "input",
     name: "Usage",
     message: "Please provide detailed instructions on how to use this application.",
@@ -59,8 +55,7 @@ const promptUser = () => {
             return false;
           }
         }
-      },
-{
+      },{
     type: "list",
     name: "License",
     message: "Which license does your application use?",
@@ -73,8 +68,7 @@ const promptUser = () => {
             return false;
           }
         }
-      },
-{
+      },{
     type: "input",
     name: "Contributing",
     message: "Who is contributing to this application?",
@@ -86,8 +80,7 @@ const promptUser = () => {
             return false;
           }
         }
-      }, 
-{
+      }, {
     type: "input",
     name: "Tests",
     message: "Please provide instructions for testing your code.",
@@ -99,8 +92,7 @@ const promptUser = () => {
             return false;
           }
         }
-      }, 
-{
+      }, {
     type: "input",
     name: "Github",
     message: "What is your GitHub username?",
@@ -112,8 +104,7 @@ const promptUser = () => {
             return false;
           }
         }
-   }, 
-{
+   }, {
     type: "input",
     name: "Email",
     message: "What is your email address?",
@@ -145,7 +136,7 @@ function init() {
   .then(function(data){
     console.log('inside.then')
     console.log(data)
-      writeToFile("README.md", generatorMarkdown(data));
+      writeToFile("README.md", generateMarkdown(data));
   });
 }
    
