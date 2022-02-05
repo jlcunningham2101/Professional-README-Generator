@@ -1,11 +1,17 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
-const utils = require('utils');
 const fs = require('fs');
-const generateMarkdown = require('./utils/generateMarkdown');
+const generatorMarkdown = require('./utils/generateMarkdown');
 
 
 // TODO: Create an array of questions for user input
+const promptProject = () => {
+  console.log(`
+  ===============
+  Add a New Project
+  ===============
+    `);
+}
 const promptUser = () => {
     return inquirer.prompt ([
 {
@@ -16,7 +22,7 @@ const promptUser = () => {
     if (titleInput) {
         return true;
       } else {
-        console.log('Please enter your project title!');
+        console.log('Please enter the title of your project.');
         return false;
       }
     }
@@ -34,19 +40,7 @@ const promptUser = () => {
           }
         }
       },
-{
-    type: "input",
-    name: "Contents",
-    message: "Table of Contents",
-    validate: contentsInput => {
-        if (contentsInput) {
-            return true;
-          } else {
-            console.log('Please enter details regarding your table of contents.');
-            return false;
-          }
-        }
-      },
+
 {
     type: "input",
     name: "Installation",
@@ -74,10 +68,10 @@ const promptUser = () => {
         }
       },
 {
-    type: "checkbox",
+    type: "list",
     name: "License",
     message: "Which license does your application use? Check the one that applies.",
-    choices: ['Unlicensed', 'Apache 2.0','MIT', 'GPL 3.0'],
+    choices: ['Unlicensed', 'Apache 2.0','MIT', 'Eclips'],
     validate: licenseInput => {
         if (licenseInput) {
             return true;
@@ -143,24 +137,25 @@ const promptUser = () => {
 };
 
 // TODO: Create a function to write README file
-function writeFile(fileName, data) {
+function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, err => {
     if (err) throw err;
-    return console.log(err)
+    //return console.log(err)
 
     console.log('README is complete')
     });
-       
+  }
 
 // TODO: Create a function to initialize app
 function init() {
-    inquirer.prompt(questions)
+  promptUser()
     .then(function(data){
+      console.log('inside.then')
+      console.log(data)
         writeToFile("README.md", generatorMarkdown(data));
-        console.log(data)
     });
 }
-}
+
 // Function call to initialize app
 init();
 
