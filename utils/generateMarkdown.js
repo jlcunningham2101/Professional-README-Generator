@@ -26,92 +26,30 @@ function renderLicenseBadge(license) {
     return "[![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)";
   } else if (license === "Mozilla Public License") {
     return "[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)";
-  } else {
-    return "happy";
-  }
-}
-
-//module.exports = renderLicenseBadge;
-
-//.then and console.log needed to display the data
-///.then(function(renderLicenseBadge){
-//console.log();
-
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(licenseLink) {
-  if (licenseLink === "None") {
-    return "";
-  } else {
-    return "* [License](#License)";
   }
 
-  // if (licenseLink === "None") {
-  //   return "";
-  // } else if (licenseLink === "Apache License 2.0") {
-  //   return "https://opensource.org/licenses/Apache-2.0";
-  // } else if (licenseLink === "GNU General Public License v3.0") {
-  //   return "https://www.gnu.org/licenses/gpl-3.0";
-  // } else if (licenseLink === "MIT License") {
-  //   return "https://opensource.org/licenses/MIT";
-  // } else if (licenseLink === "BSD 2-Clause Simplified License") {
-  //   return "https://opensource.org/licenses/BSD-2-Clause";
-  // } else if (licenseLink === "BSD 3 Clause New or Revised License") {
-  //   return "https://opensource.org/licenses/BSD-3-Clause";
-  // } else if (licenseLink === "Boost Software License 1.0") {
-  //   return "https://choosealicense.com/licenses/bsl-1.0/";
-  // } else if (licenseLink === "Creative Commons Zero v1.0 Universal") {
-  //   return "http://creativecommons.org/publicdomain/zero/1.0/";
-  // } else if (licenseLink === "Eclipse Public License 1.0") {
-  //   return "https://opensource.org/licenses/EPL-1.0";
-  // } else if (licenseLink === "GNU Affero General Public License v3.0") {
-  //   return "https://www.gnu.org/licenses/agpl-3.0";
-  // } else if (licenseLink === "GNU General Public License v2.0") {
-  //   return "https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html";
-  // } else if (licenseLink === "Mozilla Public License") {
-  //   return "https://choosealicense.com/licenses/mpl-2.0/";
-  // }
-  ////.then and console.log needed to display the data
-  //module.exports = renderLicenseLink;
-}
+  // TODO: Create a function that returns the license link
+  // If there is no license, return an empty string
+  function renderLicenseLink(license) {
+    if (license === "None") {
+      return "";
+    } else {
+      return "* [License](#License)";
+    }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(licenseSection) {
-  if (licenseSection === "None") {
-    return "";
-  } else {
-    return `# License
+
+  // TODO: Create a function that returns the license section of README
+  // If there is no license, return an empty string
+  function renderLicenseSection(license) {
+    if (license === "None") {
+      return "";
+    } else {
+      return `# License
     This application falls under the ${licenseSection}.`;
+    }
   }
 }
-//   if (licenseSection === "None") {
-//     return "";
-//   } else if (licenseSection === "Apache License 2.0") {
-//     return "Apache";
-//   } else if (licenseSection === "GNU General Public License v3.0") {
-//     return "GNU";
-//   } else if (licenseSection === "MIT License") {
-//     return "MIT";
-//   } else if (licenseSection === "BSD 2-Clause Simplified License") {
-//     return "BSD";
-//   } else if (licenseSection === "BSD 3 Clause New or Revised License") {
-//     return "BSD";
-//   } else if (licenseSection === "Boost Software License 1.0") {
-//     return "Boost";
-//   } else if (licenseSection === "Creative Commons Zero v1.0 Universal") {
-//     return "Creative Commons";
-//   } else if (licenseSection === "Eclipse Public License 1.0") {
-//     return "Eclipse";
-//   } else if (licenseSection === "GNU Affero General Public License v3.0") {
-//     return "GNU";
-//   } else if (licenseSection === "GNU General Public License v2.0") {
-//     return "GNU";
-//   } else if (licenseSection === "Mozilla Public License") {
-//     return "Mozilla";
-//   }
-// }
-//module.exports = renderLicenseSection;
+}
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
@@ -127,7 +65,7 @@ ${renderLicenseBadge(data.license)}
   * [Description](#Description)
   * [Installation](#Installation)
   * [Usage](#Usage)
-  ${renderLicenseLink(data.licenseLink)}
+  ${renderLicenseLink(data.LicenseLink)}
   * [Contributing](#Contributing)
   * [Tests](#Tests)
   * [Questions](#Questions)
@@ -140,7 +78,7 @@ ${renderLicenseBadge(data.license)}
   # Usage
   In order to use this application, you must: ${data.Usage}
 
-  ${renderLicenseSection(data.licenseSection)}
+  ${renderLicenseSection(data.license)}
 
   # Contributing
   The following individual(s) are contributors to this application:${
