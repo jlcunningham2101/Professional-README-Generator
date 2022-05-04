@@ -7,7 +7,6 @@
 - [User-Story](#user-story)
 - [Acceptance-Criteria](#acceptance-criteria)
 - [Usage](#usage)
-- [Webpage-Screenshots](#webpage-screenshots)
 - [Github-Link](#github-link)
 - [Deployed-Link](#deployed-link)
 - [Contributor](#contributor)
@@ -50,8 +49,6 @@ GIVEN a command-line application that accepts user input
 ### Usage
 
 Application users will need to use Inquirer package. The package can be installed by entering 'npm i inquirer' in the commant line. The application is invoked by using 'node index.js'.
-
-### Webpage Screenshots
 
 ### GitHub Link
 

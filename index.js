@@ -1,184 +1,134 @@
 // TODO: Include packages needed for this application
-const inquirer = require("inquirer");
 const fs = require("fs");
-const generateMarkdown = require("./utils/generateMarkdown");
+const inquirer = require("inquirer");
+const util = require("util");
+const generateMark = require("./utils/generateMarkdown");
+
+const writeFileAsync = util.promisify(fs.writeFile);
 
 // TODO: Create an array of questions for user input
+const questions = [
+  {
+    type: "input",
+    name: "username",
+    message: "Provide your github username.",
+    validate: (githubInput) => {
+      if (githubInput) {
+        return true;
+      } else {
+        console.log("Please provide your github username!");
+        return false;
+      }
+    },
+  },
+  {
+    type: "input",
+    name: "email",
+    message: "Provide your email address.",
+    validate: (emailInput) => {
+      if (emailInput) {
+        return true;
+      } else {
+        console.log("Please provide your email address!");
+        return false;
+      }
+    },
+  },
+  {
+    type: "input",
+    name: "title",
+    message: "Provide your project title.",
+    validate: (projectInput) => {
+      if (projectInput) {
+        return true;
+      } else {
+        console.log("Please enter your project title!");
+        return false;
+      }
+    },
+  },
+  {
+    type: "input",
+    name: "description",
+    message: "Provide a description of your project.",
+    validate: (descriptionInput) => {
+      if (descriptionInput) {
+        return true;
+      } else {
+        console.log("Please enter a description of your project!");
+        return false;
+      }
+    },
+  },
+  {
+    type: "confirm",
+    name: "confirmContent",
+    message: "Would you like to use a table of content?",
+    default: false,
+  },
+  {
+    type: "list",
+    name: "license",
+    message: "What license should your project have?",
+    choices: [
+      "MIT",
+      "Unlicense",
+      "Apache 2.0",
+      "GNU",
+      "Mozilla Public License 2.0",
+    ],
+  },
+
+  {
+    type: "input",
+    name: "installation",
+    message: "What command should be run to install dependencies?",
+    default: "npm i",
+  },
+  {
+    type: "input",
+    name: "tests",
+    message: "What command should be run to run tests?",
+    default: "npm run test",
+  },
+  {
+    type: "input",
+    name: "usage",
+    message: "What does the user need to know about using the repository?",
+  },
+  {
+    type: "input",
+    name: "contribute",
+    message:
+      "What does the user need to know about contributing to the repository?",
+  },
+];
+
 const promptUser = () => {
-  return inquirer.prompt([
-    {
-      type: "input",
-      name: "Title",
-      message: "What is the name of your application?",
-      validate: (titleInput) => {
-        if (titleInput) {
-          return true;
-        } else {
-          console.log("Please enter the title of your application.");
-          return false;
-        }
-      },
-    },
-    {
-      type: "input",
-      name: "Description",
-      message:
-        "What does your application do? What technologies did you utilize and why? Did you encounter any challenges? Are there features you would like to implement in the future?",
-      validate: (descriptionInput) => {
-        if (descriptionInput) {
-          return true;
-        } else {
-          console.log("Please enter the description of your application!");
-          return false;
-        }
-      },
-    },
-    {
-      type: "input",
-      name: "Installation",
-      message:
-        "What steps are required to install and/or run this application? Be sure to advise if there are any required dependencies.",
-      validate: (installationInput) => {
-        if (installationInput) {
-          return true;
-        } else {
-          console.log(
-            "Please enter the installation instructions for your application."
-          );
-          return false;
-        }
-      },
-    },
-    {
-      type: "input",
-      name: "Usage",
-      message:
-        "Please provide detailed instructions on how to use this application.",
-      validate: (usageInput) => {
-        if (usageInput) {
-          return true;
-        } else {
-          console.log(
-            "Please enter the usage information about your application."
-          );
-          return false;
-        }
-      },
-    },
-    {
-      type: "list",
-      name: "License",
-      message: "Which license does your application use?",
-      choices: [
-        "None",
-        "Apache License 2.0",
-        "GNU General Public License v3.0",
-        "MIT License",
-        "BSD 2-Clause Simplified License",
-        "BSD 3 Clause New or Revised License",
-        "Boost Software License 1.0",
-        "Creative Commons Zero v1.0 Universal",
-        "Eclipse Public License 1.0",
-        "GNU Affero General Public License v3.0",
-        "GNU General Public License v2.0",
-        "Mozilla Public License",
-      ],
-      validate: (licenseInput) => {
-        if (licenseInput) {
-          return true;
-        } else {
-          console.log(
-            "Please click the checkbox for the license your peoject uses."
-          );
-          return false;
-        }
-      },
-    },
-    {
-      type: "input",
-      name: "Contributing",
-      message: "Who is contributing to this application?",
-      validate: (contributingInput) => {
-        if (contributingInput) {
-          return true;
-        } else {
-          console.log(
-            "Please enter details regarding application contributors."
-          );
-          return false;
-        }
-      },
-    },
-    {
-      type: "input",
-      name: "Tests",
-      message: "Please provide instructions for testing your code.",
-      validate: (testsInput) => {
-        if (testsInput) {
-          return true;
-        } else {
-          console.log("Please provide test instructions for yout application.");
-          return false;
-        }
-      },
-    },
-    {
-      type: "input",
-      name: "Github",
-      message: "What is your GitHub username?",
-      validate: (githubInput) => {
-        if (githubInput) {
-          return true;
-        } else {
-          console.log("Please enter your GitHub username.");
-          return false;
-        }
-      },
-    },
-    {
-      type: "input",
-      name: "Email",
-      message: "What is your email address?",
-      validate: (emailInput) => {
-        if (emailInput) {
-          return true;
-        } else {
-          console.log("Please enter your email address to proceed.");
-          return false;
-        }
-      },
-    },
-  ]);
+  return inquirer.prompt(questions);
 };
 
 // TODO: Create a function to write README file
-function writeToFile(data) {
-  fs.writeFile(fileName, data, (err) => {
-    if (err) throw err;
-    //return console.log(err)
-
-    console.log("README is complete");
-  });
-}
+const writeToFile = (fileName, data) => {
+  return writeFileAsync(fileName, data);
+};
 
 // TODO: Create a function to initialize app
-// Function to write README file
-function writeToFile(data) {
-  fs.writeFile("./dist/README.md", data, (err) => {
-    if (err) throw err;
-    console.log("Your README was successfully created");
-  });
-}
+const init = async () => {
+  try {
+    console.log("Please answer the following questions to make your README");
+    const answers = await promptUser();
 
-// Function to initialize app
-function init() {
-  inquirer.prompt(questions).then(function (answers) {
-    const data = generateMarkdown(answers);
-    console.log("user responses", answers);
-    console.log("generated README", data);
-    writeToFile(data);
-  });
-}
+    const fileContent = generateMark(answers);
+
+    await writeToFile("generate/README.md", fileContent);
+
+    console.log("README.md created in generate folder.");
+  } catch (err) {
+    console.error("Error README.md was not created!");
+    console.log("err");
+  }
+};
 
 // Function call to initialize app
 init();
